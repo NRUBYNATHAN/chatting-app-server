@@ -4,12 +4,12 @@ const http = require("http");
 const cors = require("cors");
 const { Server } = require("socket.io");
 app.use(cors());
-
+const PORT = process.env.PORT || 3002;
 const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "https://marvelous-macaron-77c3d7.netlify.app/",
+    origin: "http://localhost:3000",
     methods: ["GET", "POST"],
   },
 });
@@ -31,6 +31,6 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(3002, () => {
+server.listen(PORT, () => {
   console.log("SERVER RUNNNING");
 });
